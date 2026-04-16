@@ -19,6 +19,7 @@ app.use('/api/projects', require('./routes/projects'));
 app.use('/api/messages', require('./routes/messages'));
 app.use('/api/blogs', require('./routes/blogs'));
 app.use('/api/about', require('./routes/about'));
+app.use('/api/upload', require('./routes/upload'));
 
 app.get('/', (req, res) => {
   res.send('Nodezet API Backend is running...');
