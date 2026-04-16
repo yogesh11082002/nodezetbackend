@@ -29,6 +29,18 @@ app.get('/', (req, res) => {
   res.send('Nodezet API Backend is running...');
 });
 
+// JSON 404 Handler
+app.use((req, res) => {
+  console.log(`404: ${req.url}`);
+  res.status(404).json({ success: false, error: `Route ${req.url} not found` });
+});
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ success: false, error: 'Internal Server Error' });
+});
+
 // Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
