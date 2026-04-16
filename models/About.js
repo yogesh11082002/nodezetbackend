@@ -14,6 +14,12 @@ const AboutSchema = new mongoose.Schema({
     label: String,
     value: String
   }],
+  team: [{
+    name: String,
+    role: String,
+    image: String,
+    specialization: String
+  }],
   updatedAt: { type: Date, default: Date.now }
 });
 
