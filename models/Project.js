@@ -6,7 +6,8 @@ const ProjectSchema = new mongoose.Schema({
   imageUrl: { type: String },
   link: { type: String },
   category: { type: String, default: 'Web_Experience' },
-  tags: [{ type: String }]
+  tags: [{ type: String }],
+  order: { type: Number, default: 0 }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Project', ProjectSchema);

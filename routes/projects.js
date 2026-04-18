@@ -5,8 +5,21 @@ const { protect } = require('../middleware/auth');
 
 router.get('/', async (req, res) => {
   try {
-    const projects = await Project.find();
+    const projects = await Project.find().sort({ order: 1, createdAt: -1 });
     res.status(200).json({ success: true, data: projects });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
+
+// Admin: Batch reorder projects
+router.post('/reorder', protect, async (req, res) => {
+  try {
+    const { orders } = req.body; // Array of { id, order }
+    for (const item of orders) {
+      await Project.findByIdAndUpdate(item.id, { order: item.order });
+    }
+    res.status(200).json({ success: true, message: 'Projects reordered successfully' });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
