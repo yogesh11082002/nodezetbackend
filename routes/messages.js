@@ -5,11 +5,11 @@ const Message = require('../models/Message');
 // POST /api/messages - Submit a contact request
 router.post('/', async (req, res) => {
   try {
-    const { name, email, message } = req.body;
-    if (!name || !email || !message) {
-      return res.status(400).json({ success: false, error: 'Please provide all fields' });
+    const { name, email, phone, company, service, subService, budget, message } = req.body;
+    if (!name || !email || !message || !phone || !company || !service || !budget) {
+      return res.status(400).json({ success: false, error: 'Please provide all required fields' });
     }
-    const newMessage = await Message.create({ name, email, message });
+    const newMessage = await Message.create({ name, email, phone, company, service, subService, budget, message });
     res.status(201).json({ success: true, data: newMessage });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
