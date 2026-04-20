@@ -1,76 +1,59 @@
-require('dotenv').config();
 const mongoose = require('mongoose');
 const BlogPost = require('./models/BlogPost');
-const connectDB = require('./db');
+require('dotenv').config();
 
-const blogs = [
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/nodezet";
+
+const seedBlogs = [
   {
-    title: "Transforming Enterprise Operations with Generative AI",
-    slug: "transforming-enterprise-ai",
-    category: "AI Integration",
-    excerpt: "Discover how Fortune 500 companies are utilizing custom LLMs to automate complex internal workflows and stay competitive.",
-    content: "Content for AI integration...",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
-    tags: ["AI", "Enterprise", "Automation"]
-  },
-  {
-    title: "Scalable Microservices: Why Next.js is the New Standard",
-    slug: "scalable-microservices-nextjs",
-    category: "Web Development",
-    excerpt: "Next.js 14 and Server Actions are revolutionizing how we handle backend logic within a unified frontend framework.",
-    content: "Content for Web Development...",
-    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
-    tags: ["Web", "Next.js", "Performance"]
-  },
-  {
-    title: "Cross-Platform Excellence: Launching Apps with React Native",
-    slug: "cross-platform-react-native",
-    category: "Mobile Apps",
-    excerpt: "How to achieve 60fps performance on both iOS and Android while maintaining a single codebase.",
-    content: "Content for Mobile Dev...",
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
-    tags: ["Mobile", "React Native", "Apps"]
-  },
-  {
-    title: "Zero-Trust Security: Protecting your Digital Infrastructure",
-    slug: "zero-trust-security-guide",
-    category: "Cybersecurity",
-    excerpt: "In a world of remote work and cloud clusters, 'Identity' is the new perimeter. Here is how to secure your stack.",
-    content: "Content for Security...",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80",
-    tags: ["Security", "Infrastructure", "Cloud"]
-  },
-  {
-    title: "The Rise of Edge Computing: Minimizing Latency",
+    title: "Edge Computing: Minimizing Latency for Global Platforms",
     slug: "edge-computing-latency",
-    category: "Cloud Solutions",
-    excerpt: "Moving logic closer to the user reduces TTFB and improves the overall user experience significantly.",
-    content: "Content for Cloud...",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80",
-    tags: ["Cloud", "Latency", "Edge"]
+    category: "Cloud Engineering",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+    content: `
+      <h2>The Shift to the Edge</h2>
+      <p>In 2026, the performance of a web application is no longer measured by the raw power of the central server, but by the physical proximity of data to the end user. Edge computing has transitioned from a niche optimization to a mandatory architectural requirement for enterprise-grade platforms.</p>
+      
+      <h3>Why Latency is the Ultimate Metric</h3>
+      <p>Even a 100ms delay in interaction can lead to a 7% drop in conversion for high-frequency trading or e-commerce platforms. At Nodezet, we utilize decentralized computing nodes to process logic closer to the user, effectively bypassing the bottlenecks of traditional centralized data centers.</p>
+      
+      <blockquote>
+        "Our data suggests that architectures utilizing Edge processing see a 40% improvement in perceived responsiveness."
+      </blockquote>
+
+      <h3>Scaling for the Next Billion Users</h3>
+      <p>As digital adoption scales across emerging markets, the infrastructure must be resilient enough to handle fluctuating connectivity. Our deployments utilize redundant Vercel and AWS Edge functions to ensure that even in the event of a regional outage, the application remains fully functional and snappy.</p>
+    `,
+    isPublished: true
   },
   {
-    title: "Human-Centric Design: Building UI that Converts",
-    slug: "human-centric-design-converts",
-    category: "UI/UX Design",
-    excerpt: "UX is more than just aesthetics; it's about psychology, accessibility, and guiding the user to a conversion point.",
-    content: "Content for UI/UX...",
-    image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
-    tags: ["UI", "UX", "Design"]
+    title: "SaaS Design Systems: Scaling UI for Complex Operations",
+    slug: "saas-design-systems",
+    category: "UI/UX Architecture",
+    image: "https://images.unsplash.com/photo-1586717791821-3f44a563dc4c?auto=format&fit=crop&w=1200&q=80",
+    content: `
+      <h2>Beyond the Aesthetic</h2>
+      <p>A design system for an enterprise SaaS platform is not just a collection of buttons and colors; it is a shared language between engineering and design. It is the structural framework that allows a platform to scale from five screens to five hundred without increasing cognitive load for the user.</p>
+      
+      <h3>The Importance of Predictable Patterns</h3>
+      <p>For users who spend 8 hours a day inside a professional dashboard, predictability is superior to novelty. Every interaction—from a simple click to a complex data export—must follow a set of established rules. Nodezet develops custom design tokens that enforce these rules at the CSS and component level, ensuring total visual and functional coherence across the entire stack.</p>
+    `,
+    isPublished: true
   }
 ];
 
-const seedBlogs = async () => {
-  try {
-    await connectDB();
-    await BlogPost.deleteMany();
-    await BlogPost.insertMany(blogs);
-    console.log('Successfully seeded 6 professional blogs!');
-    process.exit();
-  } catch (err) {
-    console.error(err);
-    process.exit(1);
-  }
+const seedDB = async () => {
+  await mongoose.connect(MONGO_URI);
+  console.log("Connected to MongoDB for seeding...");
+  
+  await BlogPost.deleteMany({ slug: { $in: seedBlogs.map(b => b.slug) } });
+  await BlogPost.insertMany(seedBlogs);
+  
+  console.log("Seeding successful! 'Edge Computing' and 'SaaS Design Systems' are now live.");
+  process.exit();
 };
 
-seedBlogs();
+seedDB().catch(err => {
+  console.error("Seeding failed:", err);
+  process.exit(1);
+});
