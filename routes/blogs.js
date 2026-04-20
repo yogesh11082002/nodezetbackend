@@ -13,20 +13,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get all blogs for admin (includes unpublished)
+router.get('/admin', protect, async (req, res) => {
+  try {
+    const blogs = await BlogPost.find().sort({ createdAt: -1 });
+    res.json({ success: true, data: blogs });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // Get single blog by slug
 router.get('/:slug', async (req, res) => {
   try {
     const blog = await BlogPost.findOne({ slug: req.params.slug, isPublished: true });
     if (!blog) return res.status(404).json({ success: false, error: 'Blog not found' });
     res.json({ success: true, data: blog });
-  } catch (err) {
-    res.status(500).json({ success: false, error: err.message });
-  }
-});
-router.get('/admin', protect, async (req, res) => {
-  try {
-    const blogs = await BlogPost.find().sort({ createdAt: -1 });
-    res.json({ success: true, data: blogs });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }
