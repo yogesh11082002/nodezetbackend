@@ -10,9 +10,9 @@ const seedData = {
   mission: "To empower businesses globally through flawlessly executed technology endpoints. We believe in high performance, surgical precision, and constantly pushing the boundaries of what is possible on the modern web.",
   vision: "Becoming the unified, definitive standard for enterprise-grade web applications, dynamic user interfaces, and high-fidelity intelligent AI integrations.",
   stats: [
-    { label: "Elite Engineers", value: "25+" },
-    { label: "Successful Deployments", value: "100+" },
-    { label: "Global Partners", value: "40+" },
+    { label: "Core Experts", value: "6" },
+    { label: "Successful Deployments", value: "15" },
+    { label: "Active Clients", value: "10+" },
     { label: "Security Updates", value: "24/7" }
   ],
   team: [
