@@ -5,7 +5,7 @@ require('dotenv').config();
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/nodezet";
 
 const seedData = {
-  heroTitle: "Nodezet Architecture",
+  heroTitle: "Nodezet Solutions Architecture",
   heroSubtitle: "We are a collective of elite engineers, designers, and systems architects dedicated to forging the next generation of digital infrastructure. At Nodezet, we build what's next.",
   mission: "To empower businesses globally through flawlessly executed technology endpoints. We believe in high performance, surgical precision, and constantly pushing the boundaries of what is possible on the modern web.",
   vision: "Becoming the unified, definitive standard for enterprise-grade web applications, dynamic user interfaces, and high-fidelity intelligent AI integrations.",
@@ -16,41 +16,41 @@ const seedData = {
     { label: "Security Updates", value: "24/7" }
   ],
   team: [
-    { 
-      name: "Yogesh Sengar", 
-      role: "Founder & CEO", 
-      specialization: "Strategic Leadership & System Architecture", 
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" // Professional Indian male
+    {
+      name: "Yogesh Sengar",
+      role: "Founder & CEO",
+      image: "https://res.cloudinary.com/dskemjnc2/image/upload/v1781690155/nodezet_blog/bd5unrmhfi6fadoei8kl.png",
+      specialization: "Strategic Leadership & System Architecture"
     },
-    { 
-      name: "Arjun Sharma", 
-      role: "Chief Technical Officer", 
-      specialization: "Enterprise Backend & Distributed Systems", 
-      image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=400&auto=format&fit=crop" // Indian tech professional
+    {
+      name: "Tarun Gautam",
+      role: "Co-Founder & Chief Technology Officer (CTO)",
+      image: "https://res.cloudinary.com/dskemjnc2/image/upload/v1781690172/nodezet_blog/jizkv7gycsblmxe6h03j.jpg",
+      specialization: "Scalable Backend Architecture, Cloud Infrastructure & Distributed Systems"
     },
-    { 
-      name: "Priya Patel", 
-      role: "Head of UI/UX Design", 
-      specialization: "Human-Centric Design & Digital Branding", 
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop" // Indian female tech leader
+    {
+      name: "Sanya Bhatia",
+      role: "Manager",
+      image: "https://res.cloudinary.com/dskemjnc2/image/upload/v1781690266/nodezet_blog/fmf0dxm0wu7oto9sxmon.jpg",
+      specialization: "Project Coordination, Team Management & Client Success"
     },
-    { 
-      name: "Rohan Gupta", 
-      role: "Senior Full Stack Developer", 
-      specialization: "Scalable Web Apps & API Orchestration", 
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop" // Professional Indian male
+    {
+      name: "Anzal Shaikh",
+      role: "Senior Full Stack Developer",
+      image: "https://res.cloudinary.com/dskemjnc2/image/upload/v1781691096/nodezet_blog/tgudcchmctfme0gusnla.png",
+      specialization: "Scalable Web Apps & API Orchestration"
     },
-    { 
-      name: "Ananya Iyer", 
-      role: "AI Research Lead", 
-      specialization: "Large Language Models & Predictive Analytics", 
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop" // Indian female AI researcher
+    {
+      name: "Tripti Singh",
+      role: "Head of UI/UX & Product Design",
+      image: "https://res.cloudinary.com/dskemjnc2/image/upload/v1781691052/nodezet_blog/ppumvwk1aykk6c5xgscf.png",
+      specialization: "User Experience Design, Design Systems & Product Innovation"
     },
-    { 
-      name: "Vikram Singh", 
-      role: "Cloud Infrastructure Manager", 
-      specialization: "DevOps Automation & Security Hardening", 
-      image: "https://images.unsplash.com/photo-1506794778242-92df5ffd8ad2?q=80&w=400&auto=format&fit=crop" // Indian IT professional
+    {
+      name: "Vikram Singh",
+      role: "Cloud Infrastructure Manager",
+      image: "https://res.cloudinary.com/dskemjnc2/image/upload/v1781691059/nodezet_blog/uzfpaevcjexfhlc1xf4n.png",
+      specialization: "DevOps Automation & Security Hardening"
     }
   ]
 };
