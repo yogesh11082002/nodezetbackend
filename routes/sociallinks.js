@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
       doc = await SocialLinks.create({
         links: [
           { platform: 'instagram', url: 'https://instagram.com/nodezet', enabled: true },
-          { platform: 'linkedin', url: 'https://linkedin.com/company/nodezet', enabled: true },
+          { platform: 'linkedin', url: 'https://www.linkedin.com/company/nodezet-solutions/', enabled: true },
           { platform: 'facebook', url: 'https://facebook.com/nodezet', enabled: true },
           { platform: 'twitter', url: 'https://x.com/nodezet', enabled: true },
         ]
